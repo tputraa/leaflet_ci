@@ -26,7 +26,7 @@
                         <div class="form-group">
                           <label class="col-sm-3 control-label">Nama <span class="required" aria-required="true">*</span></label>
                             <div class="col-sm-6">
-                                <input type="text" class="form-control" name="nama" value="<?php echo htmlspecialchars(isset($ps->nama_lengkap) ? $ps->nama_lengkap:'');?>" required/>
+                                <input type="text" class="form-control" name="nama" value="<?php echo htmlspecialchars(isset($ps->nama_tempat) ? $ps->nama_tempat:'');?>" required/>
                             </div>  
                         </div>
                         <div class="form-group">

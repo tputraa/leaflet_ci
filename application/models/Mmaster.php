@@ -39,6 +39,17 @@ class Mmaster extends CI_Model {
 		$this->db->insert('kategori',$kategori);
 	}
 
+    function updateKategori($data,$id){
+        $this->db->where('id',$id);
+        $this->db->update('kategori',$data);
+    }
+
+    function SelectKategoriId($id){
+        $this->db->select('*');
+        $this->db->where('id', $id);
+        return $this->db->get('kategori')->row();
+    }
+
 	function Deletekategori($id){
 		$this->db->where('id',$id);
 		$this->db->delete('kategori');

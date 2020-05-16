@@ -4,9 +4,9 @@ class Mdamkar extends CI_Model {
 
 	public $variable;
 	var $table = 'publicservice';
-    var $column_order = array('id','nama_lengkap','no_telp','alamat','latitude','longitude'); //set column field database for datatable orderable
-    var $column_search = array('ps.id','nama_lengkap','no_telp','alamat','latitude','longitude','nama_kategori'); //set column field database for datatable searchable 
-    var $order = array('ps.id' => 'asc'); // default order 
+    var $column_order = array('ps.id','nama_tempat','no_telp','alamat','latitude','longitude'); //set column field database for datatable orderable
+    var $column_search = array('nama_tempat','no_telp','alamat','latitude','longitude','nama_kategori'); //set column field database for datatable searchable 
+    var $order = array('ps.id' => 'DESC'); // default order 
 
 	public function __construct()
 	{

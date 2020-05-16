@@ -32,6 +32,15 @@ class Masterdata extends MY_Controller {
  		redirect(site_url().'/masterdata/kategori');
     }
 
+     public function kategori_edit($id){
+		$data['page'] = 'publicservice/kategori_edit';
+		// $data['kategori'] = $this->mmaster->getKategori(); 
+    	$data['kategori'] = $this->mmaster->SelectKategoriId($id);	
+
+    	$this->load->view('index',$data);
+	}
+
+
 	public function kategori_save(){
 		$this->form_validation->set_error_delimiters('<p class="help-block">', '</p>');
 		$this->form_validation->set_rules('nama_kategori','Nama Kategori','trim|required');
@@ -42,13 +51,23 @@ class Masterdata extends MY_Controller {
 			$this->kategori_add();
 		}
 		else{
+			$kategori_id   = $this->input->post('kategori_id',TRUE);
 			$nama_kategori = $this->input->post('nama_kategori',TRUE);
 
-			$kategori = array(
+			if($kategori_id){
+				$kategori = array(
 	                'nama_kategori' => $nama_kategori
-	        );
+	        	);
+	        	$this->mmaster->updateKategori($kategori,$kategori_id);
+			}else{
+				$kategori = array(
+	                'nama_kategori' => $nama_kategori
+	        	);
 
-			$this->mmaster->savekategori($kategori);
+				$this->mmaster->savekategori($kategori);
+			}
+
+			
 			$this->session->set_flashdata('success', 'Tambah Data Berhasil');
 	        redirect(site_url().'/masterdata/kategori');
 		}
@@ -61,7 +80,7 @@ class Masterdata extends MY_Controller {
         foreach ($list as $users) {
             $row = array();
             $row[] = $users->nama_kategori;
- 			$row[] = '<a href="kategori_delete/'.$users->id.'" class="btn btn-sm blue">Edit</a><a class="btn btn-sm red" href="kategori_delete/'.$users->id.'">Delete</a>';
+ 			$row[] = '<a href="kategori_edit/'.$users->id.'" class="btn btn-sm blue">Edit</a><a class="btn btn-sm red" href="kategori_delete/'.$users->id.'">Delete</a>';
             $data[] = $row;
         }
  
@@ -153,7 +172,7 @@ class Masterdata extends MY_Controller {
 
 	        if($latitude != null && $longitude != null){
 	        	$publicservice = array(
-	                'nama_lengkap' => $nama,
+	                'nama_tempat' => $nama,
 	                'alamat' => $alamat,
 	                'no_telp' => $no_telp,
 	                'email' => $email,
@@ -165,7 +184,7 @@ class Masterdata extends MY_Controller {
 	        }
 	        else{
 	        	$publicservice = array(
-	                'nama_lengkap' => $nama,
+	                'nama_tempat' => $nama,
 	                'alamat' => $alamat,
 	                'no_telp' => $no_telp,
 	                'email' => $email,
@@ -209,7 +228,7 @@ class Masterdata extends MY_Controller {
 			$longitude 		= $this->input->post('longitude',true);
 
 			$publicservice = array(
-	                'nama_lengkap' => $nama,
+	                'nama_tempat' => $nama,
 	                'alamat' => $alamat,
 	                'no_telp' => $no_telp,
 	                'email' => $email,

@@ -12,26 +12,26 @@ class Mlogin extends CI_Model {
 
 	function cekLogin(){
 		$this->db->where('username', $this->input->post('username'));
-		$this->db->or_where('nik', $this->input->post('username'));
-       	$query = $this->db->get('users');
+		// $this->db->or_where('nik', $this->input->post('username'));
+       	$query = $this->db->get('m_users');
 
        	if($query->num_rows() == 1){
 
-       			$result = $query->result();
-       			$db_pass = $result[0]->password;
+       			$result = $query->row();
+       			$db_pass = $result->password;
 
        			$password = md5($this->input->post('password'));
        			
        			if($db_pass == $password){
 
 					$data_session = array(
-						'user_id' => $result[0]->id,
-						'nama_lengkap' => $result[0]->nama_lengkap,
-						'username' => $result[0]->username,
-						'level' => $result[0]->level,
-						'email' => $result[0]->email,
-						//'avatar' => $result[0]->avatar,
-						//'avatar_thumb' => $result[0]->avatar_thumb,
+						'user_id' => $result->id,
+						'nama_lengkap' => $result->nama_lengkap,
+						'username' => $result->username,
+						'level' => $result->level,
+						'email' => $result->email,
+						//'avatar' => $result->avatar,
+						//'avatar_thumb' => $result->avatar_thumb,
 						'status' => 'login');
 					$this->session->set_userdata($data_session);
 					return 1;

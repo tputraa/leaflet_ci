@@ -34,7 +34,7 @@ class Damkar extends MY_Controller {
 			$longitude 		= $this->input->post('longitude',true);
 
 			$damkar = array(
-	                'nama_lengkap' => $nama,
+	                'nama_tempat' => $nama,
 	                'alamat' => $alamat,
 	                'no_telp' => $no_telp,
 	                'email' => $email,
@@ -102,7 +102,7 @@ class Damkar extends MY_Controller {
 
 	        if($latitude != null && $longitude != null){
 	        	$damkar = array(
-	                'nama_lengkap' => $nama,
+	                'nama_tempat' => $nama,
 	                'alamat' => $alamat,
 	                'no_telp' => $no_telp,
 	                'email' => $email,
@@ -113,7 +113,7 @@ class Damkar extends MY_Controller {
 	        }
 	        else{
 	        	$damkar = array(
-	                'nama_lengkap' => $nama,
+	                'nama_tempat' => $nama,
 	                'alamat' => $alamat,
 	                'no_telp' => $no_telp,
 	                'email' => $email,
@@ -132,11 +132,12 @@ class Damkar extends MY_Controller {
 	public function public_list()
     {
         $list = $this->mdamkar->get_datatables();
-
+        // echo "<pre>";
+        // var_dump($list);exit();
         $data = array();
         foreach ($list as $users) {
             $row = array();
-            $row[] = $users->nama_lengkap;
+            $row[] = $users->nama_tempat;
             $row[] = $users->alamat;
             $row[] = $users->no_telp;
             $row[] = $users->latitude;

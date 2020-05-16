@@ -26,7 +26,7 @@ class Home extends MY_Controller {
 
 			$marker = array();
 			$marker['latlng']		= $row->latitude.','.$row->longitude; // Marker Location
-			$marker['popupContent'] = '<strong> '.$row->nama_lengkap.'</strong>'.
+			$marker['popupContent'] = '<strong> '.$row->nama_tempat.'</strong>'.
 			 							'<br><b>Alamat : </b> '.$row->alamat.
 			 							'<br><b>Telp :  </b>'.$row->no_telp.
 			 							'<br><b>latlong :  </b>'.$row->latitude.','.$row->longitude; // Popup Content
