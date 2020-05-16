@@ -1,6 +1,6 @@
 # Leaflet with Codeigniter
 
-This is my first project related to displaying maps and markers using open street map and leaflet.js with codeigniter.
+This is my first project related to displaying map and markers using open street map and leaflet.js with codeigniter.
 but in this repo, we add manualy the coordinates on specific form and then display the map to dashboard.
 
 video : 
